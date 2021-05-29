@@ -1,5 +1,24 @@
 const { welcome, goodbye, tell } = require("../utils/fortune-teller");
 
-const promise = welcome();
+const question = "Will the weather be nice today?"
 
-console.log(promise);
+function getFortune(question) {
+  const tellPromise = tell(question)
+  .then((fortune) => {
+  return [`Your question was: ${question}`, `Your fortune is: ${fortune}`];
+  })
+  .catch((message) => {
+    return `There was an error: ${message}`;
+  });
+return tellPromise;
+ 
+}
+
+
+let get = getFortune();
+console.log(get);
+
+
+
+
+module.exports = { getFortune };
